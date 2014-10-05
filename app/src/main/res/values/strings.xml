@@ -4,5 +4,6 @@
     <string name="app_name">FlakCannon</string>
     <string name="hello_world">Bang!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_fire_works_selecrion">FireWorksSelecrionActivity</string>
 
 </resources>
