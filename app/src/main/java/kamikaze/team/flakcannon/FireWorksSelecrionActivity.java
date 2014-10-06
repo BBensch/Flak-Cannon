@@ -17,6 +17,8 @@ public class FireWorksSelecrionActivity extends Activity {
 
     ArrayList<String> listItems=new ArrayList<String>();
 
+    ArrayList<fireWorks> showStuff = new ArrayList<fireWorks>();
+
     public ArrayAdapter<String> adapter;
 
     @Override
@@ -55,10 +57,13 @@ public class FireWorksSelecrionActivity extends Activity {
     public void addFireWorks(View v){
         listItems.add("FireWorks");
         adapter.notifyDataSetChanged();
+        fireWorks fw = new fireWorks(1,1,"red");
+        showStuff.add(fw);
     }
 
     public void startShow(View view){
         Intent intent = new Intent(this, DisplayShowActivity.class);
+        intent.putExtra("key", showStuff);
         startActivity(intent);
     }
 }

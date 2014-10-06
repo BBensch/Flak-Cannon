@@ -1,9 +1,13 @@
 package kamikaze.team.flakcannon;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class DisplayShowActivity extends Activity {
@@ -19,6 +23,16 @@ public class DisplayShowActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.new_show, menu);
+
+
+        ArrayList<fireWorks> showStuff = (ArrayList<fireWorks>) getIntent().getSerializableExtra("key");
+
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, showStuff.size(), duration);
+        toast.show();
+
         return true;
     }
 
