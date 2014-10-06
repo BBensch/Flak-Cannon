@@ -1,35 +1,35 @@
 package kamikaze.team.flakcannon;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class FireWorksSelecrionActivity extends Activity {
 
+    ArrayList<String> listItems=new ArrayList<String>();
 
+    public ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fire_works_selecrion);
 
-        final Button button = (Button) findViewById(R.id.SupperButton);
-        button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Context context = getApplicationContext();
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
+        adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        });
+        ListView list = (ListView) findViewById(R.id.fireWorksList);
+        list.setAdapter(adapter);
+
+        final Button button = (Button) findViewById(R.id.SupperButton);
     }
 
 
@@ -50,5 +50,15 @@ public class FireWorksSelecrionActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addFireWorks(View v){
+        listItems.add("FireWorks");
+        adapter.notifyDataSetChanged();
+    }
+
+    public void startShow(View view){
+        Intent intent = new Intent(this, DisplayShowActivity.class);
+        startActivity(intent);
     }
 }

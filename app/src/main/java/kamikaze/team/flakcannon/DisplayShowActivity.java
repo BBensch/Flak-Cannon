@@ -11,7 +11,7 @@ public class DisplayShowActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_show);
+        setContentView(R.layout.activity_display_show);
     }
 
 

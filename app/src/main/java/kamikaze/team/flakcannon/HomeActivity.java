@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.view.View;
 
 
 public class HomeActivity extends Activity {
@@ -35,9 +36,9 @@ public class HomeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void newShow() {
+    public void newShow(View view) {
         //Start new activity for adding a firework
-        Intent intent = new Intent (this, NewShowActivity.class);
+        Intent intent = new Intent (this, FireWorksSelecrionActivity.class);
         startActivity(intent);
     }
 }
