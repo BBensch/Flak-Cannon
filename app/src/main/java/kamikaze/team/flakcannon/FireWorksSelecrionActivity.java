@@ -3,6 +3,7 @@ package kamikaze.team.flakcannon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
 
 public class FireWorksSelecrionActivity extends Activity {
 
-    ArrayList<String> listItems=new ArrayList<String>();
+    public ArrayList<String> listItems=new ArrayList<String>();
 
-    ArrayList<fireWorks> showStuff = new ArrayList<fireWorks>();
+    public ArrayList<fireWorks> showStuff;
 
     public ArrayAdapter<String> adapter;
 
@@ -30,6 +31,8 @@ public class FireWorksSelecrionActivity extends Activity {
 
         ListView list = (ListView) findViewById(R.id.fireWorksList);
         list.setAdapter(adapter);
+
+        showStuff = new ArrayList<fireWorks>();
 
         final Button button = (Button) findViewById(R.id.SupperButton);
     }
@@ -63,7 +66,8 @@ public class FireWorksSelecrionActivity extends Activity {
 
     public void startShow(View view){
         Intent intent = new Intent(this, DisplayShowActivity.class);
-        intent.putExtra("key", showStuff);
+
+        intent.putParcelableArrayListExtra("key", showStuff);
         startActivity(intent);
     }
 }
