@@ -8,6 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import com.plattysoft.leonids.ParticleSystem;
+
+
+import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.ArrayList;
 
@@ -56,5 +60,10 @@ public class DisplayShowActivity extends Activity {
         String text = showStuff.get(0).color;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+
+
+        new ParticleSystem(this, 15, 1, 4000)
+                .setSpeedRange(0.2f, 0.5f)
+                .oneShot(v, 4);
     }
 }
