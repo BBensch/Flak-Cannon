@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="LeonidsLib">
+  <library name="1_LeonidsLib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/LeonidsLib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/src/main/LeonidsLib.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

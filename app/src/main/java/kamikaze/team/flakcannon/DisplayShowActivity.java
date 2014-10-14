@@ -52,7 +52,7 @@ public class DisplayShowActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void testButton(View v){
+    public void testButton(View v) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
 
@@ -61,9 +61,18 @@ public class DisplayShowActivity extends Activity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
+        for(int i = 0; i < size; i++) {
+            explosion();
+        }
+    }
 
-        new ParticleSystem(this, 15, 1, 4000)
+    public void explosion() {
+        new ParticleSystem(this, 15, R.drawable.confeti2, 4000)
                 .setSpeedRange(0.2f, 0.5f)
-                .oneShot(v, 4);
+                .emit(findViewById(R.id.emiter_center), 8, 2000);
+    }
+
+    public void close () {
+        this.finish();
     }
 }

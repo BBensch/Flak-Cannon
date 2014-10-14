@@ -23,7 +23,17 @@
         android:layout_height="wrap_content"
         android:text="Test"
         android:id="@+id/button"
+        android:onClick="testButton"
+        android:layout_toEndOf="@+id/emiter_center"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="testButton"/>
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <View android:id="@+id/emiter_center"
+        android:layout_gravity="top"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="1dp"
+        android:layout_height="1dp" />
+
 </RelativeLayout>

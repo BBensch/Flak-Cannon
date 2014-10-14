@@ -80,6 +80,7 @@
     <orderEntry type="jdk" jdkName="Android API 20 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="LeonidsLib" level="project" />
+    <orderEntry type="library" exported="" name="1_LeonidsLib" level="project" />
   </component>
 </module>
 
