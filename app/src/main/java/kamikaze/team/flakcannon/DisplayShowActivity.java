@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 import com.plattysoft.leonids.ParticleSystem;
 
@@ -62,14 +63,20 @@ public class DisplayShowActivity extends Activity {
         toast.show();
 
         for(int i = 0; i < size; i++) {
-            explosion();
+            explosion(v);
         }
     }
 
-    public void explosion() {
-        new ParticleSystem(this, 15, R.drawable.confeti2, 4000)
-                .setSpeedRange(0.2f, 0.5f)
-                .emit(findViewById(R.id.emiter_center), 8, 2000);
+    public void explosion(View v) {
+    //    new ParticleSystem(this, 15, R.drawable.star_pink, 4000)
+      //          .setSpeedRange(0.2f, 0.5f)
+        //        .emit(findViewById(R.id.emiter_center), 8, 2000);
+        ParticleSystem ps = new ParticleSystem(this, 100, R.drawable.star_pink, 800);
+        ps.setScaleRange(0.7f, 1.3f);
+        ps.setSpeedRange(0.2f, 0.5f);
+        ps.setRotationSpeedRange(90, 180);
+        ps.setFadeOut(200, new AccelerateInterpolator());
+        ps.oneShot(findViewById(R.id.emiter_center), 70);
     }
 
     public void close () {
