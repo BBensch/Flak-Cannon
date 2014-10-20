@@ -78,4 +78,15 @@
         android:layout_alignParentEnd="true"
         android:onClick="cancel"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Random"
+        android:id="@+id/button"
+        android:layout_toEndOf="@+id/Savebutton"
+        android:layout_alignTop="@+id/Savebutton"
+        android:layout_toLeftOf="@+id/patterns_spinner"
+        android:layout_toStartOf="@+id/patterns_spinner"
+        android:onClick="onRandom"/>
+
 </RelativeLayout>

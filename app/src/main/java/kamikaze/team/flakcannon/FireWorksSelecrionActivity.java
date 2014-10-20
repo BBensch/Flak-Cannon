@@ -76,35 +76,17 @@ public class FireWorksSelecrionActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-
-        String text = "balls";
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
         if (resultCode == 1) {
             fireWorks fw = data.getParcelableExtra("fireWorks");
             listItems.add("FireWorks");
             showStuff.add(fw);
             adapter.notifyDataSetChanged();
         }
-    }
-
-    /**   @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-
-        String text = "balls";
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
-        if (requestCode == 1) {
+        else if(resultCode == 2){
             fireWorks fw = data.getParcelableExtra("fireWorks");
-            listItems.add("FireWorks");
+            listItems.add("RandomFireworks");
             showStuff.add(fw);
             adapter.notifyDataSetChanged();
         }
-    } **/
+    }
 }

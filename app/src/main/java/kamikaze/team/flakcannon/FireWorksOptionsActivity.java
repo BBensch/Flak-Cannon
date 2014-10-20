@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Random;
+
 
 public class FireWorksOptionsActivity extends Activity {
 
@@ -69,11 +71,11 @@ public class FireWorksOptionsActivity extends Activity {
 
         int s = 0;
         if(size == "large"){
-            s = 100;
+            s = 1000;
         } else if( size == "medium") {
-            s = 75;
+            s = 750;
         } else {
-            s = 50;
+            s = 500;
         }
 
         fireWorks fw = new fireWorks(0, s, spinner.getSelectedItem().toString());
@@ -87,5 +89,35 @@ public class FireWorksOptionsActivity extends Activity {
         Intent data = new Intent();
         setResult(0, data);
         finish();
+    }
+
+    public void onRandom(View v){
+
+        String pattern = spinner.getItemAtPosition(randInt(0, 4)).toString();
+        String size = spinner2.getItemAtPosition(randInt(0, 2)).toString();
+
+        int s = 0;
+        if(size == "large"){
+            s = 1000;
+        } else if( size == "medium") {
+            s = 750;
+        } else {
+            s = 500;
+        }
+
+        fireWorks fw = new fireWorks(0, s, pattern);
+        Intent data = new Intent();
+        data.putExtra("fireWorks", fw);
+        setResult(2, data);
+        finish(); // ends current activity
+    }
+
+    public static int randInt(int min, int max) {
+
+        Random rand = new Random();
+
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 }
