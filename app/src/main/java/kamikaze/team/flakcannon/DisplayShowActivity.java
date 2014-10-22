@@ -3,7 +3,9 @@ package kamikaze.team.flakcannon;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,7 +67,7 @@ public class DisplayShowActivity extends Activity {
 
         for(int i = 0; i < size; i++) {
             fireWorks fw = showStuff.get(i);
-            
+
             int num = rand.nextInt(locations.size());
             explosion(v, fw.duration, fw.color, rand);
         }
@@ -76,34 +78,39 @@ public class DisplayShowActivity extends Activity {
       //          .setSpeedRange(0.2f, 0.5f)
         //        .emit(findViewById(R.id.emiter_center), 8, 2000);
         int num = rand.nextInt(locations.size());
+
+        int variable = 0;
+
+        if (pattern.contentEquals("star white")) {
+            variable = R.drawable.star_white;
+        } else if (pattern.contentEquals("star pink")) {
+            variable = R.drawable.star_pink;
+        } else if(pattern.contentEquals("star yellow")){
+            variable = R.drawable.star;
+        } else if(pattern.contentEquals("confeti2")){
+           variable = R.drawable.confeti2;
+        } else {
+            variable = R.drawable.confeti3;
+        }
+
         if (num == 0) {
-            new ParticleSystem(this, 100, R.drawable.star_pink, 500)
+            new ParticleSystem(this, 100, variable, 500)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_center), 20);
         } else if (num == 1) {
-            new ParticleSystem(this, 100, R.drawable.star_pink, 500)
+            new ParticleSystem(this, 100, variable, 500)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_upper_left), 20);
         } else {
-            new ParticleSystem(this, 100, R.drawable.star_pink, 500)
+            new ParticleSystem(this, 100, variable, 500)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_upper_right), 20);
         }
 
-        if(pattern.contentEquals("star white")){
-            ps = new ParticleSystem(this, 100, R.drawable.star_white, 800);
-        } else if(pattern.contentEquals("star pink")){
-            ps = new ParticleSystem(this, 100, R.drawable.star_pink, 800);
-        } else if(pattern.contentEquals("star yellow")){
-            ps = new ParticleSystem(this, 100, R.drawable.star, 800);
-        } else if(pattern.contentEquals("confeti2")){
-            ps = new ParticleSystem(this, 100, R.drawable.confeti2, 800);
-        } else {
-            ps = new ParticleSystem(this, 100, R.drawable.confeti3, 800);
-        }
+
 
     }
 
