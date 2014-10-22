@@ -57,19 +57,21 @@ public class DisplayShowActivity extends Activity {
     }
 
     public void testButton(View v) {
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
+  //      Context context = getApplicationContext();
+  //      int duration = Toast.LENGTH_SHORT;
 
         int size = showStuff.size();
         Random rand = new Random();
 
         for(int i = 0; i < size; i++) {
+            fireWorks fw = showStuff.get(i);
+            
             int num = rand.nextInt(locations.size());
-            explosion(v, rand);
+            explosion(v, fw.duration, fw.color, rand);
         }
     }
 
-    public void explosion(View v, Random rand) {
+    public void explosion(View v, int size, String pattern, Random rand) {
     //    new ParticleSystem(this, 15, R.drawable.star_pink, 4000)
       //          .setSpeedRange(0.2f, 0.5f)
         //        .emit(findViewById(R.id.emiter_center), 8, 2000);
@@ -90,6 +92,19 @@ public class DisplayShowActivity extends Activity {
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_upper_right), 20);
         }
+
+        if(pattern.contentEquals("star white")){
+            ps = new ParticleSystem(this, 100, R.drawable.star_white, 800);
+        } else if(pattern.contentEquals("star pink")){
+            ps = new ParticleSystem(this, 100, R.drawable.star_pink, 800);
+        } else if(pattern.contentEquals("star yellow")){
+            ps = new ParticleSystem(this, 100, R.drawable.star, 800);
+        } else if(pattern.contentEquals("confeti2")){
+            ps = new ParticleSystem(this, 100, R.drawable.confeti2, 800);
+        } else {
+            ps = new ParticleSystem(this, 100, R.drawable.confeti3, 800);
+        }
+
     }
 
     public void initPositions() {

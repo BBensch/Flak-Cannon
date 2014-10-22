@@ -24,6 +24,10 @@
             android:name=".DisplayShowActivity"
             android:label="@string/title_activity_new_show" >
         </activity>
+        <activity
+            android:name=".FireWorksOptionsActivity"
+            android:label="@string/title_activity_fire_works_options" >
+        </activity>
     </application>
 
 </manifest>

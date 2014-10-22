@@ -8,5 +8,19 @@
     <string name="title_activity_fire_works_selecrion">FireWorksSelecrionActivity</string>
     <string name="title_activity_new_show">NewShowActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_fire_works_options">FireWorksOptionsActivity</string>
+    <string-array name="patterns_array">
+        <item>confeti2</item>
+        <item>confeti3</item>
+        <item>star yellow</item>
+        <item>star pink</item>
+        <item>star white</item>
+    </string-array>
+    <string-array name="size_array">
+        <item>small</item>
+        <item>medium</item>
+        <item>large</item>
+    </string-array>
+
 
 </resources>

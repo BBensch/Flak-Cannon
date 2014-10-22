@@ -1,6 +1,7 @@
 package kamikaze.team.flakcannon;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -58,10 +60,10 @@ public class FireWorksSelecrionActivity extends Activity {
     }
 
     public void addFireWorks(View v){
-        listItems.add("FireWorks");
-        adapter.notifyDataSetChanged();
-        fireWorks fw = new fireWorks(1,1,"red");
-        showStuff.add(fw);
+        Intent intent = new Intent(this, FireWorksOptionsActivity.class);
+
+        startActivityForResult(intent, 1);
+
     }
 
     public void startShow(View view){
@@ -69,5 +71,22 @@ public class FireWorksSelecrionActivity extends Activity {
 
         intent.putParcelableArrayListExtra("key", showStuff);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1) {
+            fireWorks fw = data.getParcelableExtra("fireWorks");
+            listItems.add("FireWorks");
+            showStuff.add(fw);
+            adapter.notifyDataSetChanged();
+        }
+        else if(resultCode == 2){
+            fireWorks fw = data.getParcelableExtra("fireWorks");
+            listItems.add("RandomFireworks");
+            showStuff.add(fw);
+            adapter.notifyDataSetChanged();
+        }
     }
 }
