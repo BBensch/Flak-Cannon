@@ -66,7 +66,7 @@ public class DisplayShowActivity extends Activity {
 
             fireWorks fw = showStuff.get(i);
 
-            explosion(v, fw.duration, fw.color);
+            explosion(v, fw.size, fw.color);
         }
     }
 
