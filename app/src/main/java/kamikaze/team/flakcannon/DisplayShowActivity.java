@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 import com.plattysoft.leonids.ParticleSystem;
+import java.util.Random;
 
 
 import com.plattysoft.leonids.ParticleSystem;
@@ -21,6 +22,7 @@ public class DisplayShowActivity extends Activity {
 
 
     ArrayList<fireWorks> showStuff;
+    ArrayList<String> locations = new ArrayList<String>();
 
 
     @Override
@@ -30,6 +32,7 @@ public class DisplayShowActivity extends Activity {
         showStuff = new ArrayList<fireWorks>();
         Intent i = getIntent();
         showStuff = i.getParcelableArrayListExtra("key");
+        initPositions();
     }
 
 
@@ -58,25 +61,41 @@ public class DisplayShowActivity extends Activity {
         int duration = Toast.LENGTH_SHORT;
 
         int size = showStuff.size();
-        String text = showStuff.get(0).color;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        Random rand = new Random();
 
         for(int i = 0; i < size; i++) {
-            explosion(v);
+            int num = rand.nextInt(locations.size());
+            explosion(v, rand);
         }
     }
 
-    public void explosion(View v) {
+    public void explosion(View v, Random rand) {
     //    new ParticleSystem(this, 15, R.drawable.star_pink, 4000)
       //          .setSpeedRange(0.2f, 0.5f)
         //        .emit(findViewById(R.id.emiter_center), 8, 2000);
-        ParticleSystem ps = new ParticleSystem(this, 100, R.drawable.star_pink, 800);
-        ps.setScaleRange(0.7f, 1.3f);
-        ps.setSpeedRange(0.2f, 0.5f);
-        ps.setRotationSpeedRange(90, 180);
-        ps.setFadeOut(200, new AccelerateInterpolator());
-        ps.oneShot(findViewById(R.id.emiter_center), 70);
+        int num = rand.nextInt(locations.size());
+        if (num == 0) {
+            new ParticleSystem(this, 100, R.drawable.star_pink, 500)
+                    .setFadeOut(500)
+                    .setSpeedRange(0.2f, 0.2f)
+                    .oneShot(findViewById(R.id.emitter_center), 20);
+        } else if (num == 1) {
+            new ParticleSystem(this, 100, R.drawable.star_pink, 500)
+                    .setFadeOut(500)
+                    .setSpeedRange(0.2f, 0.2f)
+                    .oneShot(findViewById(R.id.emitter_upper_left), 20);
+        } else {
+            new ParticleSystem(this, 100, R.drawable.star_pink, 500)
+                    .setFadeOut(500)
+                    .setSpeedRange(0.2f, 0.2f)
+                    .oneShot(findViewById(R.id.emitter_upper_right), 20);
+        }
+    }
+
+    public void initPositions() {
+        locations.add("emitter_center");
+        locations.add("emitter_upper_left");
+        locations.add("emitter_upper_right");
     }
 
     public void close () {
