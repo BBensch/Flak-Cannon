@@ -3,13 +3,16 @@ package kamikaze.team.flakcannon;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 import com.plattysoft.leonids.ParticleSystem;
+import java.util.Random;
 
 
 import com.plattysoft.leonids.ParticleSystem;
@@ -21,7 +24,7 @@ public class DisplayShowActivity extends Activity {
 
 
     ArrayList<fireWorks> showStuff;
-
+    ArrayList<String> locations = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class DisplayShowActivity extends Activity {
         showStuff = new ArrayList<fireWorks>();
         Intent i = getIntent();
         showStuff = i.getParcelableArrayListExtra("key");
+        initPositions();
     }
 
 
@@ -58,46 +62,61 @@ public class DisplayShowActivity extends Activity {
   //      int duration = Toast.LENGTH_SHORT;
 
         int size = showStuff.size();
-//        String text = showStuff.get(0).color;
-  //      Toast toast = Toast.makeText(context, text, duration);
-    //    toast.show();
+        Random rand = new Random();
 
         for(int i = 0; i < size; i++) {
-
             fireWorks fw = showStuff.get(i);
-
-            explosion(v, fw.size, fw.color);
+            
+            int num = rand.nextInt(locations.size());
+            explosion(v, fw.size, fw.color, rand);
         }
     }
 
-    public void explosion(View v, int size, String pattern) {
+    public void explosion(View v, int size, String pattern, Random rand) {
     //    new ParticleSystem(this, 15, R.drawable.star_pink, 4000)
       //          .setSpeedRange(0.2f, 0.5f)
         //        .emit(findViewById(R.id.emiter_center), 8, 2000);
-        ParticleSystem ps;
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
+        int num = rand.nextInt(locations.size());
 
-        Toast toast = Toast.makeText(context, pattern, duration);
-        toast.show();
+        int variable = 0;
 
-        if(pattern.contentEquals("star white")){
-            ps = new ParticleSystem(this, 100, R.drawable.star_white, 800);
-        } else if(pattern.contentEquals("star pink")){
-            ps = new ParticleSystem(this, 100, R.drawable.star_pink, 800);
+        if (pattern.contentEquals("star white")) {
+            variable = R.drawable.star_white;
+        } else if (pattern.contentEquals("star pink")) {
+            variable = R.drawable.star_pink;
         } else if(pattern.contentEquals("star yellow")){
-            ps = new ParticleSystem(this, 100, R.drawable.star, 800);
+            variable = R.drawable.star;
         } else if(pattern.contentEquals("confeti2")){
-            ps = new ParticleSystem(this, 100, R.drawable.confeti2, 800);
+           variable = R.drawable.confeti2;
         } else {
-            ps = new ParticleSystem(this, 100, R.drawable.confeti3, 800);
+            variable = R.drawable.confeti3;
         }
 
-        ps.setScaleRange(0.7f, 1.3f);
-        ps.setSpeedRange(0.2f, 0.5f);
-        ps.setRotationSpeedRange(90, 180);
-        ps.setFadeOut(200, new AccelerateInterpolator());
-        ps.oneShot(findViewById(R.id.emiter_center), 70);
+        if (num == 0) {
+            new ParticleSystem(this, 100, variable, 500)
+                    .setFadeOut(500)
+                    .setSpeedRange(0.2f, 0.2f)
+                    .oneShot(findViewById(R.id.emitter_center), 20);
+        } else if (num == 1) {
+            new ParticleSystem(this, 100, variable, 500)
+                    .setFadeOut(500)
+                    .setSpeedRange(0.2f, 0.2f)
+                    .oneShot(findViewById(R.id.emitter_upper_left), 20);
+        } else {
+            new ParticleSystem(this, 100, variable, 500)
+                    .setFadeOut(500)
+                    .setSpeedRange(0.2f, 0.2f)
+                    .oneShot(findViewById(R.id.emitter_upper_right), 20);
+        }
+
+
+
+    }
+
+    public void initPositions() {
+        locations.add("emitter_center");
+        locations.add("emitter_upper_left");
+        locations.add("emitter_upper_right");
     }
 
     public void close () {
