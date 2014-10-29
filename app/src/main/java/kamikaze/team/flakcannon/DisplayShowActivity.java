@@ -68,6 +68,22 @@ public class DisplayShowActivity extends Activity {
             fireWorks fw = showStuff.get(i);
             
             int num = rand.nextInt(locations.size());
+
+            Thread timer = new Thread() {
+                Random rand = new Random();
+                public void run(){
+                    int randomNum = rand.nextInt((2 - 1) + 1) + 1;
+                    int delay = randomNum * 500;
+                    try {
+
+                        sleep(delay);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            };
+            timer.start();
             explosion(v, fw.size, fw.color, rand);
         }
     }
