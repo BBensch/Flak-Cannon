@@ -69,7 +69,7 @@ public class DisplayShowActivity extends Activity {
             fireWorks fw = showStuff.get(i);
 
             int num = rand.nextInt(locations.size());
-            explosion(v, fw.duration, fw.color, rand);
+            explosion(v, fw.size, fw.color, rand);
         }
     }
 
@@ -94,17 +94,17 @@ public class DisplayShowActivity extends Activity {
         }
 
         if (num == 0) {
-            new ParticleSystem(this, 100, variable, 500)
+            new ParticleSystem(this, 100, variable, size)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_center), 20);
         } else if (num == 1) {
-            new ParticleSystem(this, 100, variable, 500)
+            new ParticleSystem(this, 100, variable, size)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_upper_left), 20);
         } else {
-            new ParticleSystem(this, 100, variable, 500)
+            new ParticleSystem(this, 100, variable, size)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_upper_right), 20);
