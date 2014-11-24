@@ -26,6 +26,7 @@ public class DisplayShowActivity extends Activity {
     ArrayList<fireWorks> showStuff;
     ArrayList<String> locations = new ArrayList<String>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +67,7 @@ public class DisplayShowActivity extends Activity {
 
         for(int i = 0; i < size; i++) {
             fireWorks fw = showStuff.get(i);
-            
+
             int num = rand.nextInt(locations.size());
 
             Thread timer = new Thread() {

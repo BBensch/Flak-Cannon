@@ -70,15 +70,16 @@ public class FireWorksOptionsActivity extends Activity {
         String size = spinner2.getSelectedItem().toString();
 
         int s = 0;
-        if(size == "large"){
+        if(size.equals("large")){
             s = 1000;
-        } else if( size == "medium") {
+        } else if(size.equals("medium")) {
             s = 750;
         } else {
             s = 500;
         }
 
         fireWorks fw = new fireWorks(0, s, spinner.getSelectedItem().toString());
+        System.out.println(fw.size);
         Intent data = new Intent();
         data.putExtra("fireWorks", fw);
         setResult(1, data);
@@ -97,9 +98,9 @@ public class FireWorksOptionsActivity extends Activity {
         String size = spinner2.getItemAtPosition(randInt(0, 2)).toString();
 
         int s = 0;
-        if(size == "large"){
+        if(size.equals("large")){
             s = 1000;
-        } else if( size == "medium") {
+        } else if( size.equals("medium")) {
             s = 750;
         } else {
             s = 500;
