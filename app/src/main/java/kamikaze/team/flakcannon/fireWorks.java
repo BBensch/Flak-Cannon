@@ -8,12 +8,12 @@ import android.os.Parcelable;
  */
 public class fireWorks implements Parcelable {
 
-    public int duration;
+    public int size;
     public int pattern;
     public String color;
 
     public fireWorks(int duration, int pattern, String color ){
-        this.duration = duration;
+        this.size = duration;
         this.pattern = pattern;
         this.color = color;
     }
@@ -25,7 +25,7 @@ public class fireWorks implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(duration);
+        parcel.writeInt(size);
         parcel.writeInt(pattern);
         parcel.writeString(color);
     }
@@ -42,7 +42,7 @@ public class fireWorks implements Parcelable {
     };
 
     private fireWorks(Parcel in) {
-        duration = in.readInt();
+        size = in.readInt();
         pattern = in.readInt();
         color = in.readString();
     }
