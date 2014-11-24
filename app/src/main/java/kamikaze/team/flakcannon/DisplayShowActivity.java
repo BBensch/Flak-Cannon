@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -12,7 +15,10 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 import com.plattysoft.leonids.ParticleSystem;
+
+import java.net.URI;
 import java.util.Random;
+import android.media.SoundPool;
 
 
 import com.plattysoft.leonids.ParticleSystem;
@@ -22,9 +28,9 @@ import java.util.ArrayList;
 
 public class DisplayShowActivity extends Activity {
 
-
     ArrayList<fireWorks> showStuff;
     ArrayList<String> locations = new ArrayList<String>();
+
 
 
     @Override
@@ -57,6 +63,7 @@ public class DisplayShowActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     public void testButton(View v) {
   //      Context context = getApplicationContext();
@@ -110,6 +117,8 @@ public class DisplayShowActivity extends Activity {
                     .oneShot(findViewById(R.id.emitter_upper_right), 20);
         }
 
+        MediaPlayer bang = MediaPlayer.create(this, R.raw.wilhelm);
+        bang.start();
 
 
     }
