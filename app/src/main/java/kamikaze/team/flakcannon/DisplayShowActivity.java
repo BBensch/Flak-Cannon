@@ -122,7 +122,7 @@ public class DisplayShowActivity extends Activity {
             bang.start();
         }
 
-        else if(variable == R.drawable.star_pink){
+        else if(variable == R.drawable.star_white){
             MediaPlayer bang = MediaPlayer.create(this, R.raw.bomb);
             bang.start();
         }
