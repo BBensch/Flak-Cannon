@@ -1,27 +1,17 @@
 package kamikaze.team.flakcannon;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.widget.Toast;
+
 import com.plattysoft.leonids.ParticleSystem;
 
-import java.net.URI;
 import java.util.Random;
-import android.media.SoundPool;
 
-
-import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.ArrayList;
 
@@ -117,9 +107,30 @@ public class DisplayShowActivity extends Activity {
                     .oneShot(findViewById(R.id.emitter_upper_right), 20);
         }
 
-        MediaPlayer bang = MediaPlayer.create(this, R.raw.wilhelm);
-        bang.start();
+        if(variable == R.drawable.confeti2){
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.wilhelm);
+            bang.start();
+        }
 
+        else if(variable == R.drawable.star_pink){
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.garand);
+            bang.start();
+        }
+
+        else if(variable == R.drawable.confeti3){
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.shotgun);
+            bang.start();
+        }
+
+        else if(variable == R.drawable.star_pink){
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.bomb);
+            bang.start();
+        }
+
+        else {
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.tank);
+            bang.start();
+        }
 
     }
 
