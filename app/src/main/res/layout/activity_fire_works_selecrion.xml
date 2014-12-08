@@ -43,4 +43,15 @@
         android:layout_alignParentStart="true"
         android:onClick="addFireWorks"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/button"
+        android:layout_toEndOf="@+id/add"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/SupperButton"
+        android:layout_toStartOf="@+id/SupperButton"
+        android:layout_toRightOf="@+id/add"
+        android:onClick="save"/>
 </RelativeLayout>

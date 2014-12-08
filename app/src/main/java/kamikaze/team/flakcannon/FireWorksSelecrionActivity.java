@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import sqlite.helper.DatabaseHelper;
+import sqlite.model.Tag;
+import sqlite.model.Fireworks;
+
 
 public class FireWorksSelecrionActivity extends Activity {
 
@@ -23,6 +27,8 @@ public class FireWorksSelecrionActivity extends Activity {
     public ArrayList<fireWorks> showStuff;
 
     public ArrayAdapter<String> adapter;
+
+    public DatabaseHelper dbh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,8 @@ public class FireWorksSelecrionActivity extends Activity {
         showStuff = new ArrayList<fireWorks>();
 
         final Button button = (Button) findViewById(R.id.SupperButton);
+
+        dbh = new DatabaseHelper(getApplicationContext());
     }
 
 
@@ -88,5 +96,17 @@ public class FireWorksSelecrionActivity extends Activity {
             showStuff.add(fw);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    public void save(View view) {
+        //System.out.println(dbh);
+        dbh = new DatabaseHelper(getApplicationContext());
+        Tag tag1 = new Tag("Save1");
+        long tag1_id = dbh.createTag(tag1);
+        Fireworks firework1 = new Fireworks("Firework", 0);
+        long firework1_id = dbh.createFIREWORKS(firework1, new long[] { tag1_id });
+        dbh.createFIREWORKSTag(firework1_id, tag1_id);
+        dbh.closeDB();
+        System.out.println(dbh.getFIREWORKSCount());
     }
 }
