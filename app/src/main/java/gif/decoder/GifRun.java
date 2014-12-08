@@ -54,12 +54,11 @@ public class GifRun implements Runnable, Callback {
                     int centreX = (rCanvas.getWidth()  - bmb.getWidth()) /2;
 
                     int centreY = (rCanvas.getHeight() - bmb.getHeight()) /2;
-                    bmb.getScaledWidth(scaleX);
-                    bmb.getScaledHeight(scaleY);
+
 					rCanvas.drawBitmap(bmb, centreX, centreY, new Paint());
 					//ImageView im = (ImageView) findViewById(R.id.imageView1);
 					//im.setImageBitmap(bmb);
-					
+
 					mSurfaceHolder.unlockCanvasAndPost(rCanvas);
 					bmb = decode.next();
 
@@ -69,7 +68,7 @@ public class GifRun implements Runnable, Callback {
                   //  }
                     count ++;
                     mSurfaceHolder.unlockCanvasAndPost(rCanvas);
-					
+
 				Thread.sleep(100);
 			} catch (Exception ex) {
 

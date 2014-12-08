@@ -1,6 +1,7 @@
 package kamikaze.team.flakcannon;
 
 import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
+
+import java.io.IOException;
 
 import gif.decoder.GifRun;
 
@@ -25,11 +28,17 @@ public class StarWarsActivity extends Activity {
         v = (SurfaceView) findViewById(R.id.surfaceView);
         run = new GifRun();
 
-
-
     }
 
-    public void causeBoom(View q){
+    public void causeBoom(View q) throws IOException {
+        MediaPlayer mp = new MediaPlayer();
+        AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.boom);
+        mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        try {
+            mp.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Canvas canvas = v.getHolder().lockCanvas();
         canvas.drawColor(Color.BLACK);
 
@@ -37,8 +46,8 @@ public class StarWarsActivity extends Activity {
 
         run.LoadGiff(v, this, R.raw.starwars);
 
-        MediaPlayer bang = MediaPlayer.create(this, R.raw.boom);
-        bang.start();
+     //   MediaPlayer bang = MediaPlayer.create(this, R.raw.boom);
+        mp.start();
     }
 
     @Override
