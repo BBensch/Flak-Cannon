@@ -14,10 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
+
 import com.plattysoft.leonids.ParticleSystem;
 
 import java.net.URI;
 import java.util.Random;
+
 import android.media.SoundPool;
 
 
@@ -30,7 +32,6 @@ public class DisplayShowActivity extends Activity {
 
     ArrayList<fireWorks> showStuff;
     ArrayList<String> locations = new ArrayList<String>();
-
 
 
     @Override
@@ -66,20 +67,21 @@ public class DisplayShowActivity extends Activity {
 
 
     public void testButton(View v) {
-  //      Context context = getApplicationContext();
-  //      int duration = Toast.LENGTH_SHORT;
+        //      Context context = getApplicationContext();
+        //      int duration = Toast.LENGTH_SHORT;
 
         int size = showStuff.size();
         Random rand = new Random();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             fireWorks fw = showStuff.get(i);
 
             int num = rand.nextInt(locations.size());
 
             Thread timer = new Thread() {
                 Random rand = new Random();
-                public void run(){
+
+                public void run() {
                     int randomNum = rand.nextInt((2 - 1) + 1) + 1;
                     int delay = randomNum * 500;
                     try {
@@ -97,8 +99,8 @@ public class DisplayShowActivity extends Activity {
     }
 
     public void explosion(View v, int size, String pattern, Random rand) {
-    //    new ParticleSystem(this, 15, R.drawable.star_pink, 4000)
-      //          .setSpeedRange(0.2f, 0.5f)
+        //    new ParticleSystem(this, 15, R.drawable.star_pink, 4000)
+        //          .setSpeedRange(0.2f, 0.5f)
         //        .emit(findViewById(R.id.emiter_center), 8, 2000);
         int num = rand.nextInt(locations.size());
 
@@ -108,10 +110,10 @@ public class DisplayShowActivity extends Activity {
             variable = R.drawable.star_white;
         } else if (pattern.contentEquals("star pink")) {
             variable = R.drawable.star_pink;
-        } else if(pattern.contentEquals("star yellow")){
+        } else if (pattern.contentEquals("star yellow")) {
             variable = R.drawable.star;
-        } else if(pattern.contentEquals("confeti2")){
-           variable = R.drawable.confeti2;
+        } else if (pattern.contentEquals("confeti2")) {
+            variable = R.drawable.confeti2;
         } else {
             variable = R.drawable.confeti3;
         }
@@ -133,8 +135,22 @@ public class DisplayShowActivity extends Activity {
                     .oneShot(findViewById(R.id.emitter_upper_right), 20);
         }
 
-        MediaPlayer bang = MediaPlayer.create(this, R.raw.wilhelm);
-        bang.start();
+        if (variable == R.drawable.confeti2) {
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.wilhelm);
+            bang.start();
+        } else if (variable == R.drawable.star_pink) {
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.garand);
+            bang.start();
+        } else if (variable == R.drawable.confeti3) {
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.shotgun);
+            bang.start();
+        } else if (variable == R.drawable.star_white) {
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.bomb);
+            bang.start();
+        } else {
+            MediaPlayer bang = MediaPlayer.create(this, R.raw.tank);
+            bang.start();
+        }
 
 
     }
@@ -145,7 +161,7 @@ public class DisplayShowActivity extends Activity {
         locations.add("emitter_upper_right");
     }
 
-    public void close () {
+    public void close() {
         this.finish();
     }
 }
