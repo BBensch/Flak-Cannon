@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Test"
-        android:id="@+id/button"
+        android:id="@+id/planet"
         android:onClick="testButton"
         android:layout_marginBottom="37dp"
         android:layout_alignParentBottom="true"

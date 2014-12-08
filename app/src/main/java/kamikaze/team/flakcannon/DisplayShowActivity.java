@@ -1,17 +1,27 @@
 package kamikaze.team.flakcannon;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.view.animation.AccelerateInterpolator;
+import android.widget.Toast;
 import com.plattysoft.leonids.ParticleSystem;
 
+import java.net.URI;
 import java.util.Random;
+import android.media.SoundPool;
 
+
+import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.ArrayList;
 
@@ -66,6 +76,22 @@ public class DisplayShowActivity extends Activity {
             fireWorks fw = showStuff.get(i);
 
             int num = rand.nextInt(locations.size());
+
+            Thread timer = new Thread() {
+                Random rand = new Random();
+                public void run(){
+                    int randomNum = rand.nextInt((2 - 1) + 1) + 1;
+                    int delay = randomNum * 500;
+                    try {
+
+                        sleep(delay);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            };
+            timer.start();
             explosion(v, fw.size, fw.color, rand);
         }
     }
@@ -91,46 +117,25 @@ public class DisplayShowActivity extends Activity {
         }
 
         if (num == 0) {
-            new ParticleSystem(this, 100, variable, size)
+            new ParticleSystem(this, 100, variable, 500)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_center), 20);
         } else if (num == 1) {
-            new ParticleSystem(this, 100, variable, size)
+            new ParticleSystem(this, 100, variable, 500)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_upper_left), 20);
         } else {
-            new ParticleSystem(this, 100, variable, size)
+            new ParticleSystem(this, 100, variable, 500)
                     .setFadeOut(500)
                     .setSpeedRange(0.2f, 0.2f)
                     .oneShot(findViewById(R.id.emitter_upper_right), 20);
         }
 
-        if(variable == R.drawable.confeti2){
-            MediaPlayer bang = MediaPlayer.create(this, R.raw.wilhelm);
-            bang.start();
-        }
+        MediaPlayer bang = MediaPlayer.create(this, R.raw.wilhelm);
+        bang.start();
 
-        else if(variable == R.drawable.star_pink){
-            MediaPlayer bang = MediaPlayer.create(this, R.raw.garand);
-            bang.start();
-        }
-
-        else if(variable == R.drawable.confeti3){
-            MediaPlayer bang = MediaPlayer.create(this, R.raw.shotgun);
-            bang.start();
-        }
-
-        else if(variable == R.drawable.star_white){
-            MediaPlayer bang = MediaPlayer.create(this, R.raw.bomb);
-            bang.start();
-        }
-
-        else {
-            MediaPlayer bang = MediaPlayer.create(this, R.raw.tank);
-            bang.start();
-        }
 
     }
 

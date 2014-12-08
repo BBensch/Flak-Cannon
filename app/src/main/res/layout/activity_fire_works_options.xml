@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Random"
-        android:id="@+id/button"
+        android:id="@+id/planet"
         android:layout_toEndOf="@+id/Savebutton"
         android:layout_alignTop="@+id/Savebutton"
         android:layout_toLeftOf="@+id/patterns_spinner"
