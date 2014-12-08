@@ -37,33 +37,48 @@ public class GifRun implements Runnable, Callback {
 			surfaceExists=true;
 			Thread t = new Thread(this);
 			t.start();
+            Log.w("myApp", ind + " We started the stuff");
 	}
 
 	public void run() 
 	{
-		while (surfaceExists) {
+        int count = 0;
+
+		while (count < 38) {
+            Log.w("myApp", count +" Still looping");
 			try {
-				
-					Canvas rCanvas = mSurfaceHolder.lockCanvas();
-					rCanvas.drawBitmap(bmb, 0, 0, new Paint());
+                    Canvas rCanvas = mSurfaceHolder.lockCanvas();
+                    int scaleX = (int)((float)(rCanvas.getWidth() * .70) / (float)bmb.getWidth());
+                    int scaleY = (int)((float)(rCanvas.getHeight() * .70) / (float)bmb.getHeight());
+
+                    int centreX = (rCanvas.getWidth()  - bmb.getWidth()) /2;
+
+                    int centreY = (rCanvas.getHeight() - bmb.getHeight()) /2;
+                    bmb.getScaledWidth(scaleX);
+                    bmb.getScaledHeight(scaleY);
+					rCanvas.drawBitmap(bmb, centreX, centreY, new Paint());
 					//ImageView im = (ImageView) findViewById(R.id.imageView1);
 					//im.setImageBitmap(bmb);
 					
 					mSurfaceHolder.unlockCanvasAndPost(rCanvas);
 					bmb = decode.next();
-                    Log.w("myApp", " " + bmb);
+
+                  //  Log.w("myApp", " " + bmb);
               //      if(bmb.toString().equals("android.graphics.Bitmap@b222e1e8")){
                 //        surfaceExists = false;
                   //  }
+                    count ++;
+                    mSurfaceHolder.unlockCanvasAndPost(rCanvas);
 					
 				Thread.sleep(100);
 			} catch (Exception ex) {
 
 			}
+
 		}
         Log.w("myApp", "Not running anymore");
         Canvas rCanvas = mSurfaceHolder.lockCanvas();
-        rCanvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR);
+        rCanvas.drawColor(Color.BLACK);
         //ImageView im = (ImageView) findViewById(R.id.imageView1);
         //im.setImageBitmap(bmb);
 

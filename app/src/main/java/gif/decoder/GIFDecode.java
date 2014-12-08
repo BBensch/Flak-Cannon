@@ -201,9 +201,9 @@ public class GIFDecode {
 	}
 	public Bitmap next(){
 		frameindex++;
-		if(frameindex>frames.size()-1){
-			frameindex=0;
-		}
+	//	if(frameindex>frames.size()-1){
+	//		frameindex=0;
+	//	}
 	return	((GifFrame) frames.elementAt(frameindex)).image;
 	}
 	public int read(InputStream is) {

@@ -31,10 +31,12 @@ public class StarWarsActivity extends Activity {
 
     public void causeBoom(View q){
         Canvas canvas = v.getHolder().lockCanvas();
-        canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR);
+        canvas.drawColor(Color.BLACK);
 
         v.getHolder().unlockCanvasAndPost(canvas);
+
         run.LoadGiff(v, this, R.raw.starwars);
+
         MediaPlayer bang = MediaPlayer.create(this, R.raw.boom);
         bang.start();
     }
