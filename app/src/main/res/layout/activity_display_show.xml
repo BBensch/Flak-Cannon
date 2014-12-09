@@ -12,7 +12,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"
+        android:text="Fire"
         android:id="@+id/planet"
         android:onClick="testButton"
         android:layout_marginBottom="37dp"

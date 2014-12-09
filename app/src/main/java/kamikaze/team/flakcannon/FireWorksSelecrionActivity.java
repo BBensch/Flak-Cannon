@@ -86,7 +86,7 @@ public class FireWorksSelecrionActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 1) {
             fireWorks fw = data.getParcelableExtra("fireWorks");
-            listItems.add("FireWorks");
+            listItems.add(fw.color);
             showStuff.add(fw);
             adapter.notifyDataSetChanged();
         }

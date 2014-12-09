@@ -65,37 +65,18 @@ public class DisplayShowActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public void testButton(View v) {
         //      Context context = getApplicationContext();
         //      int duration = Toast.LENGTH_SHORT;
 
         int size = showStuff.size();
         Random rand = new Random();
+            for (int i = 0; i < size; i++) {
+                fireWorks fw = showStuff.get(i);
 
-        for (int i = 0; i < size; i++) {
-            fireWorks fw = showStuff.get(i);
-
-            int num = rand.nextInt(locations.size());
-
-            Thread timer = new Thread() {
-                Random rand = new Random();
-
-                public void run() {
-                    int randomNum = rand.nextInt((2 - 1) + 1) + 1;
-                    int delay = randomNum * 500;
-                    try {
-
-                        sleep(delay);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            };
-            timer.start();
-            explosion(v, fw.size, fw.color, rand);
-        }
+                int num = rand.nextInt(locations.size());
+                explosion(v, fw.size, fw.color, rand);
+            }
     }
 
     public void explosion(View v, int size, String pattern, Random rand) {
